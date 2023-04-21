@@ -7,8 +7,6 @@ export default function Navbar() {
         <nav className="nav-general">
             <ul>
                 <li><a href="/">Inicio</a></li>
-                <li><a href="/app">Principal</a></li>
-                <li><a href="/rulespage">Instrucciones</a></li>
                 <li><a href="/teampage">El equipo</a></li>
             </ul>
         </nav>

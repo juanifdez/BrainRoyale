@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 import LandingPage from './LandingPage'
 import TeamPage from './TeamPage'
 import RulesPage from '../game/RulesPage'
-import App from './App'
+/* import App from './App' */
 
 
 function Routing(){
@@ -12,9 +12,11 @@ function Routing(){
         <BrowserRouter>
             <Routes>
                 <Route path={'/navbar'} element={<Navbar/>}/>
+                {/* <Route path={'/landing'} element={<LandingPage/>}/> */}
                 <Route path={'/teampage'} element={<TeamPage/>}/>
+                
                 <Route path={'/rulespage'} element={<RulesPage/>}/>
-                <Route path={'/app'} element={<App/>}/>
+
                 <Route path={'/'} element={<LandingPage/>}/>
             </Routes>
         </BrowserRouter>
