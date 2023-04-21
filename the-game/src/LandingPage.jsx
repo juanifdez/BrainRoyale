@@ -7,7 +7,7 @@ export default function LandingPage() {
         <h1>Bienvenido a The Game</h1>
         <p>¡Prepárate para el juego de preguntas trivia más divertido del año!</p>
         <br />
-        <img src="tablero.png" width="400" height="400"/>
+        <img src="tableros/tablero.png" width="400" height="400"/>
         <br />
         <br />
         <button>Jugar</button>
