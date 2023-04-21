@@ -5,7 +5,8 @@ export default function LandingPage() {
 
     return (
 
-        <div class="block">
+        <div className="block">
+        <Navbar/>
         <img src="logo.png" width="100" height="100"/>
         <h1>Bienvenido a Brain Royale</h1>
         <p>¡Prepárate para el juego de preguntas trivia más divertido del año!</p>

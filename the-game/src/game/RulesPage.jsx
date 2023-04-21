@@ -2,6 +2,7 @@ import './RulesPage.css'
 import RollDice from './RollDice'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import Navbar from '../common/Navbar'
 library.add(fas)
 
 export default function RulesPage() 
