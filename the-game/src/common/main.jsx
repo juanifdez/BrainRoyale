@@ -1,14 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+/* import App from './App' */
 import './index.css'
-import LandingPage from './LandingPage'
-import TeamPage from './TeamPage'
-import RulesPage from '../game/RulesPage'
-import Navbar from './Navbar'
+import Routing from './Routing'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-      <Navbar/>
-      <LandingPage/>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <Routing />
+    </React.StrictMode>,
 )

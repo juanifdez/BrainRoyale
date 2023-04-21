@@ -1,7 +1,9 @@
 import './LandingPage.css'
 
 export default function LandingPage() {
+
     return (
+
         <div class="block">
         <img src="logo.png" width="100" height="100"/>
         <h1>Bienvenido a Brain Royale</h1>

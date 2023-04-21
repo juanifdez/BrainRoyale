@@ -2,7 +2,7 @@ import './TeamPage.css'
 
 export default function TeamPage() {
     return (
-        <div class="block">
+        <div className="block">
         <h1>Nuestro equipo</h1>
         <img src="equipo.png" id='team' width="400" height="400"/>
         <h2>Diego Valenzuela - Juanita Fernández</h2>
