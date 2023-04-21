@@ -4,3 +4,20 @@
     padding: 2rem;
     text-align: center;
     }
+
+#p-description {
+    font-family: 'Consolas', Courier, monospace;
+    padding: 5%;
+    text-align: justify;
+    font-style: oblique;
+    }
+
+#dev-woman {
+    width: 200px;
+    height: 200px;
+    }
+
+#dev-man{
+    width: 200px;
+    height: 200px;
+    }
