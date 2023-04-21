@@ -1,11 +1,16 @@
-
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: rem;
+    text-align: center;
+    } 
 .block-nav{
-    width: 50%;
+    width: 80%;
     height: 100px;
 }
 
 .nav-general{
-        width: 50%;
+        width: 80%;
         height: 60px;
         background: #292f36;
         position: absolute;

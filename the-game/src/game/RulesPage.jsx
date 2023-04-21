@@ -2,12 +2,14 @@ import './RulesPage.css'
 import RollDice from './RollDice'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import Navbar from '../common/Navbar'
 library.add(fas)
 
 export default function RulesPage() 
 {
     return (
         <div class="block">
+        <Navbar/>
         <h1>Instrucciones</h1>
         <p>Cada jugador debe elegir una ficha de color. Es importante porque podrá saltarse una pregunta del color de su ficha una vez en la partida. </p>
         <img src="fichas/ficha_verde.png" width="80" height="80"/>

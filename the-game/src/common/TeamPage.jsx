@@ -1,9 +1,12 @@
+import Navbar from './Navbar';
 import './TeamPage.css'
 
 export default function TeamPage() {
     return (
+
         <div className="block">
-        <h1>Nuestro equipo</h1>
+        <Navbar/>
+        <h1>Nuestro Equipo</h1>
         <img src="equipo.png" id='team' width="400" height="400"/>
         <h2>Diego Valenzuela - Juanita Fernández</h2>
         <h2>Juanita</h2>

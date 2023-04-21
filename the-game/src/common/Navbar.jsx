@@ -2,11 +2,13 @@ import './Navbar.css'
 
 export default function Navbar() {
     return(
-    <div class="block-nav">
-        <div class="nav">
-        <nav class="nav-general">
+    <div className="block-nav">
+        <div className="nav">
+        <nav className="nav-general">
             <ul>
                 <li><a href="/">Inicio</a></li>
+                <li><a href="/app">Principal</a></li>
+                <li><a href="/rulespage">Instrucciones</a></li>
                 <li><a href="/teampage">El equipo</a></li>
             </ul>
         </nav>
