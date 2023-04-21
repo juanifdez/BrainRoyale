@@ -12,3 +12,5 @@ yarn add animate.css
 yarn add react-animate-on-scroll
 
 yarn add @fortawesome/fontawesome-svg-core
+
+Cápsulas de React del curoso período 2023-1
