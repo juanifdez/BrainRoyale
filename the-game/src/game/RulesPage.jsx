@@ -3,15 +3,18 @@ import RollDice from './RollDice'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '../common/Navbar'
+import "animate.css/animate.min.css";
+import ScrollAnimation from 'react-animate-on-scroll';
 library.add(fas)
 
 export default function RulesPage() 
 {
     return (
-        <div class="block">
+        <div className="block">
         <Navbar/>
         <h1>Instrucciones</h1>
         <p>Cada jugador debe elegir una ficha de color. Es importante porque podrá saltarse una pregunta del color de su ficha una vez en la partida. </p>
+
         <img src="fichas/ficha_verde.png" width="80" height="80"/>
         <img src="fichas/ficha_naranja.png" width="80" height="80"/>
         <img src="fichas/ficha_morada.png" width="80" height="80"/>
@@ -22,10 +25,16 @@ export default function RulesPage()
         <RollDice />
         <img src="tableros/tablero_sin_dados.png" width="450" height="300"/>
         <p>El jugador debe responder a una pregunta de la categoría en la que haya caído.</p>
+      {/* El código para las animaciones se obtuvo desde https://dbramwell.github.io/react-animate-on-scroll/#home */}
+        <ScrollAnimation delay={200} animateIn='fadeIn' animateOut='FadeOut'> Ciencias </ScrollAnimation>
         <img src="logos/logo_ciencias.png" width="80" height="80"/>
+        <ScrollAnimation delay={200} animateIn='fadeIn' animateOut='FadeOut'> Deportes </ScrollAnimation>
         <img src="logos/logo_deportes.png" width="80" height="80"/>
+        <ScrollAnimation delay={200} animateIn='fadeIn' animateOut='FadeOut'> Artes </ScrollAnimation>
         <img src="logos/logo_artes.png" width="80" height="80"/>
+        <ScrollAnimation delay={200} animateIn='fadeIn' animateOut='FadeOut'> Historia </ScrollAnimation>
         <img src="logos/logo_historia.png" width="80" height="80"/>
+        <ScrollAnimation delay={200} animateIn='fadeIn' animateOut='FadeOut'> Matemáticas </ScrollAnimation>
         <img src="logos/logo_matematicas.png" width="80" height="80"/>
         <p> Si la respuesta es correcta, el jugador vuelve a lanzar los dados, de lo contrario, permanece en su posición y es el turno del siguiente jugador.</p>
         <img src="jugadores.png" width="500" height="500"/>
