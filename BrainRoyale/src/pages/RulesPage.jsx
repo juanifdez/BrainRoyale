@@ -1,8 +1,8 @@
 import './RulesPage.css'
-import RollDice from './RollDice'
+import RollDice from '../components/RollDice'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
-import Navbar from '../common/Navbar'
+import Navbar from '../components/Navbar'
 import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 library.add(fas)
@@ -37,7 +37,7 @@ export default function RulesPage()
         <ScrollAnimation delay={200} animateIn='fadeIn' animateOut='FadeOut'> Matemáticas </ScrollAnimation>
         <img src="logos/logo_matematicas.png" width="80" height="80"/>
         <p> Si la respuesta es correcta, el jugador vuelve a lanzar los dados, de lo contrario, permanece en su posición y es el turno del siguiente jugador.</p>
-        <img src="jugadores.png" width="500" height="500"/>
+        <img src="personas/jugadores.png" width="500" height="500"/>
         <p>Si el jugador cae en la casilla cerebro, gana una ficha cerebro que puede usar en cualquier momento del juego para saltar una pregunta de cualquier categoría.  </p>
         <img src="logos/logo_cerebro.png" width="80" height="80"/>
         <img src="fichas/fichas_cerebro.png" width="120" height="100"/>

@@ -1,5 +1,5 @@
 import './LandingPage.css'
-import Navbar from './Navbar';
+import Navbar from '../components/Navbar';
 
 export default function LandingPage() {
 
@@ -7,7 +7,7 @@ export default function LandingPage() {
 
         <div className="block">
         <Navbar/>
-        <img src="logo.png" width="100" height="100"/>
+        <img src="logos/logo.png" width="100" height="100"/>
         <h1>Bienvenido a Brain Royale</h1>
         <p>¡Prepárate para el juego de preguntas trivia más divertido del año!</p>
         <br />

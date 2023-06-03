@@ -9,7 +9,7 @@ export default function Navbar() {
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/app">Principal</a></li>
                 <li><a href="/rulespage">Instrucciones</a></li>
-                <li><a href="/teampage">El equipo</a></li>
+                <li><a href="/teampage">Equipo</a></li>
             </ul>
         </nav>
         </div>

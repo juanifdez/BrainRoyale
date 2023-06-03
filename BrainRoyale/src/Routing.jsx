@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './Navbar'
-import LandingPage from './LandingPage'
-import TeamPage from './TeamPage'
-import RulesPage from '../game/RulesPage'
-import App from './App'
+import Navbar from './components/Navbar'
+import LandingPage from './pages/LandingPage'
+import TeamPage from './pages/TeamPage'
+import RulesPage from './pages/RulesPage'
+import MainPage from './pages/MainPage'
 
 
 function Routing(){
@@ -14,7 +14,7 @@ function Routing(){
                 <Route path={'/navbar'} element={<Navbar/>}/>
                 <Route path={'/teampage'} element={<TeamPage/>}/>
                 <Route path={'/rulespage'} element={<RulesPage/>}/>
-                <Route path={'/app'} element={<App/>}/>
+                <Route path={'/app'} element={<MainPage/>}/>
                 <Route path={'/'} element={<LandingPage/>}/>
             </Routes>
         </BrowserRouter>
