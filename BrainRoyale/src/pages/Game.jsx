@@ -27,4 +27,32 @@ export default function Game() {
     // lanzar los dados de manera aleatoria
     let dice1 = Math.floor(Math.random() * 6) + 1;
     let dice2 = Math.floor(Math.random() * 6) + 1;
+    let diceSum = dice1 + dice2;
+
+    // sumar la suma de los dados a la posición del jugador
+    let playerPosition = 0;
+    playerPosition += diceSum;
+
+    // prevenir que el jugador se salga del tablero
+    if (playerPosition > 64) { async () => {
+      const url = `${SERVER_URL}/game/${matchId}/player/${playerId}`;
+      await axios
+      .post(url,body)
+      .then((response) => {
+        alert("No puedes avanzar más allá del tablero. Pierdes tu turno");
+        playerPosition -= diceSum;
+      });
+    }}
+    else {
+        console.log("Avanzaste " + diceSum + " casillas");
+    }
+
+    const getCard = async () => {
+      const url = `${SERVER_URL}/game/${matchId}/player/${playerId}`;
+      await axios.get(url).then((responde) => {
+        console.log(responde.data);
+      }
+    )};
+
+    
   }
