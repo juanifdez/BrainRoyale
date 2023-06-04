@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
-import './Game.css'
+import './Game.css';
+import axios from 'axios';
 
 export default function Game() {
 
