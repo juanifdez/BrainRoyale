@@ -80,9 +80,22 @@ export default function Game() {
       .post(url,body)
       .then((response) => {
         console.log("La respuesta es correcta!");
-        gameRound 
-      });
+      });  
     }
+      playerTurn += 1;
+    }
+    else { async () => {
+      const url = `${SERVER_URL}/game/${matchId}/player/${playerId}`;
+      await axios
+      .post(url,body)
+      .then((response) => {
+        console.log("La respuesta es incorrecta!");
+      }
+    )};
+      playerTurn += 1;
+    }
+  
+  
 
     
   }
