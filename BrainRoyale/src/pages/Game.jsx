@@ -43,16 +43,46 @@ export default function Game() {
         playerPosition -= diceSum;
       });
     }}
-    else {
+    else { async () => {
+      const url = `${SERVER_URL}/game/${matchId}/player/${playerId}`;
+      await axios
+      .post(url,body)
+      .then((response) => {
         console.log("Avanzaste " + diceSum + " casillas");
-    }
+        console.log("Estás en la casilla " + playerPosition)
+        console.log("La carta es de CategoryId " +  playerPosition%5 +1);
+      });
+    }};
 
     const getCard = async () => {
-      const url = `${SERVER_URL}/game/${matchId}/player/${playerId}`;
+      let cardId = playerPosition%5 +1;
+      const url = `${SERVER_URL}/game/${matchId}/card/${cardId}`;
       await axios.get(url).then((responde) => {
         console.log(responde.data);
       }
     )};
+
+    // simular un true o false
+    let randomQuestion = Math.random() < 0.5;
+    async () => {
+      const url = `${SERVER_URL}/game/${matchId}/player/${playerId}`;
+      await axios
+      .post(url,body)
+      .then((response) => {
+        console.log("Pasamos a la ronda" + ronda +1);
+      });
+    };
+
+    // casos de pregunta correcta o incorrecta
+    if (randomQuestion) { async () => {
+      const url = `${SERVER_URL}/game/${matchId}/player/${playerId}`;
+      await axios
+      .post(url,body)
+      .then((response) => {
+        console.log("La respuesta es correcta!");
+        gameRound 
+      });
+    }
 
     
   }
