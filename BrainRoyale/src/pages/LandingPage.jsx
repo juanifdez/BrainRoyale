@@ -14,7 +14,7 @@ export default function LandingPage() {
         <img src="tableros/tablero.png" width="400" height="400"/>
         <br />
         <br />
-        <button>Jugar</button>
+        <button> <a href='/Game'>Jugar</a></button>
         <br />
         <p>Iniciar sesión <a href="#">Sign in</a></p>
         <p>Crear cuenta <a href="#">Sign up</a></p>
