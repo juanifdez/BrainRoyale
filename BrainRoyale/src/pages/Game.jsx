@@ -1,8 +1,5 @@
-import Navbar from '../components/Navbar';
 import './Game.css';
-import React, { useState } from 'react';
-import axios from 'axios';
-import { SERVER_URL } from '../App';
+import Navbar from '../components/Navbar';
 
 // Inspiración en Cápsula 6 = Conexión con API, de semestre 2022-2
 
@@ -94,8 +91,5 @@ export default function Game() {
     )};
       playerTurn += 1;
     }
-  
-  
-
     
   }
