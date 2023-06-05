@@ -23,7 +23,14 @@ yarn add dependencies
 ```
 ## Ejecución
 
+Para ver la página web:
 ```html
 yarn dev
 ```
-Para ver la comunicación con el backend se debe abrir el navegador, seleccionar inspeccionar y ver la consola, ahí saldrán los ouputs que describen lo que está ocurriendo.
+Si desde la LandingPage presionas el botón Jugar y luego en la GamePage el botón Comenzar Simulación, al inspeccionar la página podrás ver en consola la comunicación con el backend y lo que está sucediendo en el juego.
+
+Para ejecutar directamente la comunicación con el backend sin la interfaz, debes descomentar la línea 142 del archivo src/components/Round.js e ingresar:
+
+```html
+yarn start
+```

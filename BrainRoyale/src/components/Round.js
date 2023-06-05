@@ -21,6 +21,11 @@ async function Round() {
     return randomNumber;
   };
 
+  function getCategoryById(data,id) {
+    const item = data.find(obj => obj.id === id);
+    return item ? item.name : null;
+  }
+
   const getGame = async () => {
     const url = `${SERVER_URL}/games`;
     const response = await axios.get(url);
@@ -28,9 +33,14 @@ async function Round() {
   };
 
   const getPlayer = async (gameId) => {
-    const url = `${SERVER_URL}/players/${gameId}`;
-    const response = await axios.get(url);
-    return response.data;
+    try {
+      const url = `${SERVER_URL}/players/${gameId}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error('Error getting player:', error);
+      throw error;
+    }
   };
 
   const getCard = async (categoryId) => {
@@ -49,7 +59,6 @@ async function Round() {
     const url = `${SERVER_URL}/games/${gameId}`;
     try {
       await axios.put(url, {});
-      console.log('Update successful');
     } catch (error) {
       console.error('Error updating game:', error);
       console.log('Error updating game');
@@ -64,7 +73,6 @@ async function Round() {
     };
     try {
       await axios.put(url, body);
-      console.log('Update successful');
     } catch (error) {
       console.error('Error updating player:', error);
       console.log('Error updating player');
@@ -75,7 +83,6 @@ async function Round() {
     const url = `${SERVER_URL}/cards/${cardId}`;
     try {
       await axios.put(url, {});
-      console.log('Update successful');
     } catch (error) {
       console.error('Error updating card:', error);
       console.log('Error updating card');
@@ -87,24 +94,23 @@ async function Round() {
   let { id: gameId, round: gameRound, finished: gameFinished } = await getGame();
   console.log("Estamos en la ronda " + gameRound + " del juego");
   let { id: playerId, position: playerPosition, turn: playerTurn } = await getPlayer(gameId);
+  // ERROR AL RECIBIR JUGADOR POR LO QUE LO DEFINIMOS
+  playerId = 3;
+  playerPosition = 0;
+  playerTurn = 1;
   playerId = parseInt(playerId, 10);
   gameRound = parseInt(gameRound, 10);
   console.log("Ahora es el turno del jugador " + playerId);
   console.log("Este jugador está en la casilla " + playerPosition);
-  const diceResult = rollDice();
+  const diceResult = rollDice().reduce((a, b) => a + b, 0);
   console.log("El jugador lanza los dados y obtiene " + diceResult);
-  playerPosition += diceResult.reduce((a, b) => a + b, 0);
+  playerPosition += diceResult;
   console.log("El jugador avanza a la casilla " + playerPosition);
-  const categories = (await getCategories()).map((item) => {
-    return {
-      id: item.id,
-      name: item.name,
-      color: item.color,
-    };
-  });
+  const categories = await getCategories();
   const categoryId = (playerPosition % categories.length) + 1;
-  const categoryName = categories.find((category) => category.id === categoryId);
-  console.log("El jugador cae en la categoría " + categoryName.name);
+  console.log(categoryId)
+  const categoryName = getCategoryById(categories,categoryId);
+  console.log("El jugador cae en la categoría " + categoryName);
   const {
     id: cardId,
     question: cardQuestion,
@@ -126,13 +132,13 @@ async function Round() {
   } else {
     console.log("La respuesta del jugador es incorrecta");
     playerTurn = 0;
-    await updatePlayer((playerId + 1) % 4, null, 1);
+    //await updatePlayer((playerId + 1) % 4, null, 1);
   }
-  await updatePlayer(playerId, playerPosition, playerTurn);
+  //await updatePlayer(playerId, playerPosition, playerTurn);
   await updateGame(gameId);
-  console.log("Finalizamos una ronda");
+   console.log("Finalizamos una ronda");
 };
 
-let round = Round();
+//let round = Round();
 
 export default Round;
