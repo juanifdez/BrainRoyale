@@ -1,6 +1,5 @@
 import './LandingPage.css';
 import Navbar from '../components/Navbar';
-
 export default function LandingPage() {
 
     return (
@@ -14,7 +13,7 @@ export default function LandingPage() {
         <img src="tableros/tablero.png" width="400" height="400"/>
         <br />
         <br />
-        <button> <a href='/Game'>Jugar</a></button>
+        <button> <a href='/game'>Jugar</a></button>
         <br />
         <p>Iniciar sesión <a href="#">Sign in</a></p>
         <p>Crear cuenta <a href="#">Sign up</a></p>
