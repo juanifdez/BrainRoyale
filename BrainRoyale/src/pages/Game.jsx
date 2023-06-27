@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './Game.css';
 import Navbar from '../components/Navbar';
-import Round from '../components/Round';
+import {
+  getCategories,
+  createGame,
+  createPlayer
+} from '../Comunications';
 
 export default function Game() {
   const [numberOfPlayers, setNumberOfPlayers] = useState(2);
@@ -24,7 +28,11 @@ export default function Game() {
   };
 
   const handleCategorySelection = (category, playerNumber) => {
-
+    setSelectedCategories((prevCategories) => {
+      const updatedCategories = [...prevCategories];
+      updatedCategories[playerNumber - 1] = category;
+      return updatedCategories;
+    });
     setPlayerAssignments((prevAssignments) => [
       ...prevAssignments,
       { category, playerNumber },
@@ -36,18 +44,17 @@ export default function Game() {
     if (selectedCategories.length < numberOfPlayers) {
       setError('Recuerda seleccionar una categoría distinta para cada jugador.');
     } else {
-      // crear Game y Players usando Comunications.jsx
-      // ir a Board page
-      Round();
+      // usar createGame, createPlayer
     }
   };
 
+  // usar getCategories
   const categoryNames = [
-    { id: 1, name: 'Ciencias'},
-    { id: 2, name: 'Deportes'},
-    { id: 3, name: 'Artes'},
-    { id: 4, name: 'Historia'},
-    { id: 5, name: 'Matemáticas'},
+    { id: 1, name: 'Ciencias' },
+    { id: 2, name: 'Deportes' },
+    { id: 3, name: 'Artes' },
+    { id: 4, name: 'Historia' },
+    { id: 5, name: 'Matemáticas' },
   ];
 
   return (
@@ -64,8 +71,8 @@ export default function Game() {
           <button onClick={handleIncrease}>+</button>
         </div>
 
-        <p>Selecciona las categorías para cada jugador:</p> 
-        
+        <p>Selecciona las categorías para cada jugador:</p>
+
         {Array.from({ length: numberOfPlayers }).map((_, index) => (
           <div key={index}>
             <p>Jugador {index + 1}:</p>
@@ -87,10 +94,11 @@ export default function Game() {
         ))}
         <p>Esta elección es importante porque cada jugador podrá saltarse una pregunta de su categoría una vez en la partida.  </p>
         {error && <p className="error">{error}</p>}
-
       </div>
       <p> </p>
-      <button onClick={handleStartGame}>Comenzar Partida</button>
+      <a href='/board' onClick={handleStartGame}>
+      <button>Comenzar Partida</button>
+      </a>  
     </div>
   );
 }

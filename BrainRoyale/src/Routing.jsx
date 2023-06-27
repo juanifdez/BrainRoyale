@@ -5,6 +5,7 @@ import TeamPage from './pages/TeamPage'
 import RulesPage from './pages/RulesPage'
 import MainPage from './pages/MainPage'
 import Game from './pages/Game'
+import Board from './pages/Board'
 
 
 function Routing(){
@@ -18,6 +19,7 @@ function Routing(){
                 <Route path={'/app'} element={<MainPage/>}/>
                 <Route path={'/'} element={<LandingPage/>}/>
                 <Route path={'/game'} element={<Game/>}/>
+                <Route path={'/board'} element={<Board/>}/>
             </Routes>
         </BrowserRouter>
         </>
