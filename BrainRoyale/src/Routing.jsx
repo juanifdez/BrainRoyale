@@ -8,6 +8,7 @@ import Game from './pages/Game'
 import Board from './pages/Board'
 import Login from './profile/Login'
 import UserCheck from './protected/UserCheck'
+import Signup from './profile/Signup'
 
 
 function Routing(){
@@ -22,6 +23,7 @@ function Routing(){
                 <Route path={'/'} element={<LandingPage/>}/>
                 <Route path={'/game'} element={<Game/>}/>
                 <Route path={'/board'} element={<Board/>}/>
+                <Route path={'/signup'} element={<Signup/>}/>
                 <Route path={'/login'} element={<Login/>}/>
                 <Route path={'/usercheck'} element={<UserCheck/>}/>
 
