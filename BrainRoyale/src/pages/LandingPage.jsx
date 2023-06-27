@@ -1,5 +1,7 @@
 import './LandingPage.css';
 import Navbar from '../components/Navbar';
+import LogoutButton from '../profile/Logout';
+
 export default function LandingPage() {
 
     return (
@@ -17,6 +19,7 @@ export default function LandingPage() {
         <br />
         <p>Iniciar sesión <a href="#">Sign in</a></p>
         <p>Crear cuenta <a href="#">Sign up</a></p>
+        <LogoutButton/>
         </div>
       );
 }
