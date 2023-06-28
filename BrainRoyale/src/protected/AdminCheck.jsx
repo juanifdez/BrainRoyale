@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from '../auth/AuthContext';
 import axios from 'axios';
 
 function AdminCheck(){
