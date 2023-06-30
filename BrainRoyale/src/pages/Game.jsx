@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './Game.css';
-import Navbar from '../components/Navbar';
 import { getCategories, createGame, createPlayer } from '../Comunications';
 
 export default function Game() {
   const [numberOfPlayers, setNumberOfPlayers] = useState(2);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [categoryNames, setCategoryNames] = useState([]);
   const [playerAssignments, setPlayerAssignments] = useState([]);
   const [error, setError] = useState('');
-  const [categoryNames, setCategoryNames] = useState([]);
 
   const handleDecrease = () => {
     if (numberOfPlayers > 2) {
@@ -30,10 +29,14 @@ export default function Game() {
       updatedCategories[playerNumber - 1] = category;
       return updatedCategories;
     });
-    setPlayerAssignments((prevAssignments) => [
-      ...prevAssignments,
-      { category, playerNumber },
-    ]);
+    setPlayerAssignments((prevAssignments) => {
+      const updatedAssignments = [...prevAssignments];
+      updatedAssignments[playerNumber - 1] = {
+        category: category,
+        playerNumber: playerNumber,
+      };
+      return updatedAssignments;
+    });
     setError('');
   };
 
@@ -42,16 +45,17 @@ export default function Game() {
       setError('Recuerda seleccionar una categoría distinta para cada jugador.');
     } else {
       try {
-        const createdGameId = await createGame(1, numberOfPlayers); // FALTA DEFINIR USER_ID ANTES
-        setGameId(createdGameId);
+        const gameId = await createGame(1, numberOfPlayers); // Cambiar por ID del usuario en sesión
 
-        for (let i = 1; i <= numberOfPlayers; i++) {
-          const categoryId = selectedCategories[i - 1].id;
-          await createPlayer(createdGameId, i, categoryId);
+        for (let playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
+          const assignment = playerAssignments[playerNumber - 1];
+          const categoryId = assignment.category.split('. ')[0];
+          await createPlayer(gameId, playerNumber, categoryId);
         }
-        console.log('Se creó el juego y los jugadores correctamente.');
+        window.location.href = `/board`;
       } catch (error) {
-        console.error('Error al crear el juego y los jugadores:', error);
+        console.error('Error al crear partida:', error);
+        setError('Error al crear partida. Por favor, inténtalo de nuevo.');
       }
     }
   };
@@ -68,12 +72,11 @@ export default function Game() {
 
     fetchCategories();
     setNumberOfPlayers(2);
-    setSelectedCategories([]); 
+    setSelectedCategories([]);
   }, []);
 
   return (
     <div className="block">
-      <Navbar />
       <h1>Brain Royale: Crear Partida</h1>
       <img src="logos/logo.png" id="logo" width="200" height="200" />
 
@@ -95,8 +98,9 @@ export default function Game() {
                 value={selectedCategories[index]}
                 onChange={(e) => handleCategorySelection(e.target.value, index + 1)}
               >
+                <option value="">Seleccione una categoría</option>
                 {categoryNames.slice(0, -1).map((category) => (
-                  <option key={category.id} value={category.name}>
+                  <option key={category.id} value={`${category.id}. ${category.name}`}>
                     {category.name}
                   </option>
                 ))}
@@ -104,11 +108,13 @@ export default function Game() {
             </div>
           </div>
         ))}
-        <p>Esta elección es importante porque cada jugador podrá saltarse una pregunta de su categoría una vez en la partida.  </p>
+        <p>
+          Esta elección es importante porque cada jugador podrá saltarse una pregunta de su categoría una vez en la partida.
+        </p>
         {error && <p className="error">{error}</p>}
       </div>
       <p> </p>
-      <a href='/board' onClick={handleStartGame}>
+      <a onClick={handleStartGame}>
         <button>Comenzar Partida</button>
       </a>
     </div>
