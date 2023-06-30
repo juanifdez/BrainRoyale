@@ -4,7 +4,6 @@ import './Login.css';
 
 function Signup() {
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState("");
@@ -15,7 +14,6 @@ function Signup() {
 
     axios.post(`${import.meta.env.VITE_BACKEND_URL}/signup`, {
         username: username,
-        email: email,
         password: password
       }).then((response) => {
         console.log('Registro exitoso! Ahora puedes volver y loguearte');
@@ -45,16 +43,6 @@ function Signup() {
           />
         </label>
         <label>
-          Email:
-          <input 
-            type="email" 
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
           Password:
           <input 
             type="password" 
@@ -64,7 +52,7 @@ function Signup() {
             required
           />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Crear Usuario" />
       </form>
     </div>
   );
