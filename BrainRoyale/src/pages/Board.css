@@ -3,5 +3,58 @@
     margin: 0 auto;
     padding: 5%;
     text-align: center;
-    
-    }
+  }
+  
+  .board {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    margin: 10px;
+  }
+  
+  .cell-text {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .ciencia {
+    background-color: #56CB64;
+  }
+  
+  .deporte {
+    background-color: #F38D01;
+  }
+  
+  .arte {
+    background-color: #853EB9;
+  }
+  
+  .historia {
+    background-color: #3575D1;
+  }
+  
+  .matematica {
+    background-color: #E440AE;
+  }
+  
+  .cerebro {
+    background-color: #F5DD22;
+  }
+  
+  .meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+  }
+  

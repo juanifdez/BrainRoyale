@@ -14,7 +14,18 @@ export const getCategories = async () => {
   }
 };
 
-export const getBoard = async (id) => {
+export const getBoard = async () => {
+  try {
+  const url = `${SERVER_URL}/boards`;
+  const response = await axios.get(url);
+  return response.data;
+  } catch (error) {
+    console.error('Error getting board:', error);
+    throw error;
+  }
+};
+
+export const getSquare = async (id) => {
   try {
   const url = `${SERVER_URL}/boards/${id}`;
   const response = await axios.get(url);

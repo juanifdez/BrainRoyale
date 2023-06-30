@@ -8,6 +8,7 @@ export default function Game() {
   const [categoryNames, setCategoryNames] = useState([]);
   const [playerAssignments, setPlayerAssignments] = useState([]);
   const [error, setError] = useState('');
+  const [gameId, setGameId] = useState(null);
 
   const handleDecrease = () => {
     if (numberOfPlayers > 2) {
@@ -46,7 +47,8 @@ export default function Game() {
     } else {
       try {
         const gameId = await createGame(1, numberOfPlayers); // Cambiar por ID del usuario en sesión
-
+        setGameId(gameId);
+        
         for (let playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
           const assignment = playerAssignments[playerNumber - 1];
           const categoryId = assignment.category.split('. ')[0];
