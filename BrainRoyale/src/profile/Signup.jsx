@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css'; 
+import { SERVER_URL } from '../Comunications';
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ function Signup() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/signup`, {
+    axios.post(`${SERVER_URL}/signup`, {
         username: username,
         password: password
       }).then((response) => {
@@ -30,10 +31,10 @@ function Signup() {
       {msg.length > 0 && <div className="successMsg"> {msg} </div>}
 
       {error && <div className="error">Hubo un error con el Registro, por favor trata nuevamente.</div>}
-
+      <h2>Registrar Cuenta</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          Nombre de Usuario:
           <input 
             type="text" 
             name="username"
@@ -43,7 +44,7 @@ function Signup() {
           />
         </label>
         <label>
-          Password:
+          Contraseña:
           <input 
             type="password" 
             name="password"
@@ -54,7 +55,10 @@ function Signup() {
         </label>
         <input type="submit" value="Crear Usuario" />
       </form>
+      <button> <a href='/'>Volver al Inicio</a></button>
     </div>
+
+    
   );
 }
 

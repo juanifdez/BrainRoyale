@@ -1,13 +1,14 @@
 import './LandingPage.css';
-import Navbar from '../components/Navbar';
+//import Navbar from '../components/Navbar';
 import LogoutButton from '../profile/Logout';
+import NavbarLanding from '../components/NavbarLanding';
 
 export default function LandingPage() {
 
     return (
 
         <div className="block">
-        <Navbar/>
+        <NavbarLanding/>
         <img src="logos/logo.png" width="100" height="100"/>
         <h1>Bienvenido a Brain Royale</h1>
         <p>¡Prepárate para el juego de preguntas trivia más divertido del año!</p>
@@ -17,8 +18,6 @@ export default function LandingPage() {
         <br />
         <button> <a href='/game'>Jugar</a></button>
         <br />
-        <p>Iniciar sesión <a href="#">Sign in</a></p>
-        <p>Crear cuenta <a href="#">Sign up</a></p>
         <LogoutButton/>
         </div>
       );

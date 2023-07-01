@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { AuthContext } from '../auth/AuthContext';
+import { AuthContext } from "../auth/AuthContext";
+
 import axios from 'axios';
 
 function UserCheck(){
@@ -8,7 +9,7 @@ function UserCheck(){
 
     const config = {
         'method': 'get',
-        'url': `${import.meta.env.VITE_BACKEND_URL}/protecteduser`,
+        'url': `${import.meta.env.REACT_APP_SERVER_URL }/protecteduser`,
         'headers': {
             'Authorization': `Bearer ${token}`
         }

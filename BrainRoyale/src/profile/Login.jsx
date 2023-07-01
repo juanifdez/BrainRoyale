@@ -2,11 +2,14 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../auth/AuthContext';
 import axios from 'axios';
 import './Login.css';
+import { SERVER_URL } from '../Comunications';
+
+
 
 
 function Login() {
   const { token, setToken } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState("");
@@ -15,8 +18,8 @@ function Login() {
     event.preventDefault();
 
     // Aquí se debe hacer la llamada al backend para iniciar sesión 
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
-        email: email,
+    axios.post(`${SERVER_URL}/login`, {
+        username: username,
         password: password
       }).then((response) => {
         console.log('Login successful');
@@ -40,19 +43,21 @@ function Login() {
       {msg.length > 0 && <div className="successMsg"> {msg} </div>}
 
       {error && <div className="error">No se pudo iniciar sesión. Intenta nuevamente.</div>}
+      <h2>Iniciar Sesión</h2>
+
       <form onSubmit={handleSubmit}>
         <label>
-          Email:
+          Nombre de Usuario:
           <input 
-            type="email" 
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            type="username" 
+            name="username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </label>
         <label>
-          Password:
+          Contraseña:
           <input 
             type="password" 
             name="password"
@@ -61,8 +66,10 @@ function Login() {
             required
           />
         </label>
-        <input type="submit" value="Enviar" />
+        <input type="submit" value="Iniciar Sesión" />
       </form>
+
+    <button> <a href='/'>Volver al Inicio</a></button>
     </div>
   );
 }
