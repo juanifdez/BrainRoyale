@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Game.css';
 import Navbar from '../components/Navbar';
-import {
-  getCategories,
-  createGame,
-  createPlayer
-} from '../Comunications';
+import { getCategories, createGame, createPlayer } from '../Comunications';
 
 export default function Game() {
   const [numberOfPlayers, setNumberOfPlayers] = useState(2);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [playerAssignments, setPlayerAssignments] = useState([]);
   const [error, setError] = useState('');
+  const [categoryNames, setCategoryNames] = useState([]);
 
   const handleDecrease = () => {
     if (numberOfPlayers > 2) {
@@ -40,22 +37,39 @@ export default function Game() {
     setError('');
   };
 
-  const handleStartGame = () => {
+  const handleStartGame = async () => {
     if (selectedCategories.length < numberOfPlayers) {
       setError('Recuerda seleccionar una categoría distinta para cada jugador.');
     } else {
-      // usar createGame, createPlayer
+      try {
+        const createdGameId = await createGame(1, numberOfPlayers); // FALTA DEFINIR USER_ID ANTES
+        setGameId(createdGameId);
+
+        for (let i = 1; i <= numberOfPlayers; i++) {
+          const categoryId = selectedCategories[i - 1].id;
+          await createPlayer(createdGameId, i, categoryId);
+        }
+        console.log('Se creó el juego y los jugadores correctamente.');
+      } catch (error) {
+        console.error('Error al crear el juego y los jugadores:', error);
+      }
     }
   };
 
-  // usar getCategories
-  const categoryNames = [
-    { id: 1, name: 'Ciencias' },
-    { id: 2, name: 'Deportes' },
-    { id: 3, name: 'Artes' },
-    { id: 4, name: 'Historia' },
-    { id: 5, name: 'Matemáticas' },
-  ];
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const categories = await getCategories();
+        setCategoryNames(categories);
+      } catch (error) {
+        console.error('Error getting categories:', error);
+      }
+    };
+
+    fetchCategories();
+    setNumberOfPlayers(2);
+    setSelectedCategories([]); 
+  }, []);
 
   return (
     <div className="block">
@@ -79,12 +93,10 @@ export default function Game() {
             <div className="category-selection">
               <select
                 value={selectedCategories[index]}
-                onChange={(e) =>
-                  handleCategorySelection(e.target.value, index + 1)
-                }
+                onChange={(e) => handleCategorySelection(e.target.value, index + 1)}
               >
-                {categoryNames.map((category) => (
-                  <option key={category.id} value={category.id}>
+                {categoryNames.slice(0, -1).map((category) => (
+                  <option key={category.id} value={category.name}>
                     {category.name}
                   </option>
                 ))}
@@ -97,8 +109,8 @@ export default function Game() {
       </div>
       <p> </p>
       <a href='/board' onClick={handleStartGame}>
-      <button>Comenzar Partida</button>
-      </a>  
+        <button>Comenzar Partida</button>
+      </a>
     </div>
   );
 }

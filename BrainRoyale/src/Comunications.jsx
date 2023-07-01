@@ -5,8 +5,8 @@ console.log('SERVER_URL:', SERVER_URL);
 
 export const getCategories = async () => {
   try {
-  const url = `${SERVER_URL}/categories`;
-  const response = await axios.get(url);
+    const url = `${SERVER_URL}/categories`;
+    const response = await axios.get(url);
   return response.data;
   } catch (error) {
     console.error('Error getting categories:', error);
@@ -43,7 +43,9 @@ export const createUser = async (userName, passWord) => {
     password: passWord,
   };
   try {
-    await axios.post(url, body);
+    const response = await axios.post(url, body);
+    const userId = response.data.id;
+    return userId;
   } catch (error) {
     console.error('Error creating user:', error);
     throw error
@@ -79,7 +81,9 @@ export const createGame = async (userId, playersNumber) => {
     players: playersNumber,
   };
   try {
-    await axios.post(url, body);
+    const response = await axios.post(url, body);
+    const gameId = response.data.id;
+    return gameId;
   } catch (error) {
     console.error('Error creating game:', error);
     throw error
@@ -115,7 +119,9 @@ export const createPlayer = async (gameId, playerNumber, categoryId) => {
     category_id: categoryId,
   };
   try {
-    await axios.post(url, body);
+    const response = await axios.post(url, body);
+    const playerId = response.data.id;
+    return playerId;
   } catch (error) {
     console.error('Error creating player:', error);
     throw error
