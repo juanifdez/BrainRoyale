@@ -3,5 +3,41 @@
     margin: 0 auto;
     padding: 5%;
     text-align: center;
-    
-    }
+  }
+  
+  .board {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    margin: 10px;
+  }
+  
+  .cell-text {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .player-sidebar {
+    position: absolute;
+    top: 180PX;
+    right: 80px;
+    padding: 20px;
+  }  
+  
+  .meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+  }
+  
