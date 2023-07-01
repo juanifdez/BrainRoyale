@@ -43,9 +43,11 @@ function Login() {
       {msg.length > 0 && <div className="successMsg"> {msg} </div>}
 
       {error && <div className="error">No se pudo iniciar sesión. Intenta nuevamente.</div>}
+      <h2>Iniciar Sesión</h2>
+
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          Nombre de Usuario:
           <input 
             type="username" 
             name="username"
@@ -55,7 +57,7 @@ function Login() {
           />
         </label>
         <label>
-          Password:
+          Contraseña:
           <input 
             type="password" 
             name="password"
@@ -64,7 +66,7 @@ function Login() {
             required
           />
         </label>
-        <input type="submit" value="Enviar" />
+        <input type="submit" value="Iniciar Sesión" />
       </form>
 
     <button> <a href='/'>Volver al Inicio</a></button>

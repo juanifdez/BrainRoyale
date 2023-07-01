@@ -31,10 +31,10 @@ function Signup() {
       {msg.length > 0 && <div className="successMsg"> {msg} </div>}
 
       {error && <div className="error">Hubo un error con el Registro, por favor trata nuevamente.</div>}
-
+      <h2>Registrar Cuenta</h2>
       <form onSubmit={handleSubmit}>
         <label>
-          Username:
+          Nombre de Usuario:
           <input 
             type="text" 
             name="username"
@@ -44,7 +44,7 @@ function Signup() {
           />
         </label>
         <label>
-          Password:
+          Contraseña:
           <input 
             type="password" 
             name="password"
