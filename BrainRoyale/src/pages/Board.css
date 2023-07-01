@@ -25,29 +25,12 @@
     font-weight: bold;
   }
   
-  .ciencia {
-    background-color: #56CB64;
-  }
-  
-  .deporte {
-    background-color: #F38D01;
-  }
-  
-  .arte {
-    background-color: #853EB9;
-  }
-  
-  .historia {
-    background-color: #3575D1;
-  }
-  
-  .matematica {
-    background-color: #E440AE;
-  }
-  
-  .cerebro {
-    background-color: #F5DD22;
-  }
+  .player-sidebar {
+    position: absolute;
+    top: 180PX;
+    right: 80px;
+    padding: 20px;
+  }  
   
   .meta {
     display: flex;

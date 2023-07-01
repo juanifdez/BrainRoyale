@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Board.css';
-import RollDice from '../components/RollDice'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import "animate.css/animate.min.css";
-library.add(fas)
-import { getBoard, getCategories, getPlayer } from '../Comunications';
+import { getBoard, getCategories, getPlayer, getGame } from '../Comunications';
 
-export default function Board() {
+export default function Board({ gameId }) {
   const [cells, setCells] = useState([]);
   const [categories, setCategories] = useState([]);
   const [players, setPlayers] = useState([]);
-  
-  // Asegúrate de definir las variables `numberOfPlayers` y `gameId`
-  const numberOfPlayers = 4;
-  const gameId = 1;
+  const [game, setGame] = useState(null);
 
   useEffect(() => {
     const fetchBoardData = async () => {
@@ -23,6 +15,15 @@ export default function Board() {
         setCells(boardData);
       } catch (error) {
         console.error('Error getting board data:', error);
+      }
+    };
+
+    const fetchGame = async (gameId) => {
+      try {
+        const gameData = await getGame(gameId);
+        setGame(gameData);
+      } catch (error) {
+        console.error('Error getting game:', error);
       }
     };
 
@@ -35,11 +36,11 @@ export default function Board() {
       }
     };
 
-    const fetchPlayers = async () => {
+    const fetchPlayers = async (game) => {
       try {
         const playerData = [];
-        for (let playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
-          const player = await getPlayer(gameId, playerNumber);
+        for (let playerNumber = 1; playerNumber <= game.players; playerNumber++) {
+          const player = await getPlayer(game.id, playerNumber);
           playerData.push(player);
         }
         setPlayers(playerData);
@@ -48,18 +49,22 @@ export default function Board() {
       }
     };
 
-    fetchBoardData();
-    fetchCategories();
-    fetchPlayers();
-  }, []);
+    if (gameId) {
+      fetchGame(gameId);
+      fetchBoardData();
+      fetchCategories();
+      if (game) {
+        fetchPlayers(game);
+      }
+    }
+  }, [gameId, game]);
 
   return (
     <div className="board">
       <h1>
-        <img src="logos/logo.png" width="50" height="50" /> Brain Royale{' '}
+        <img src="logos/logo.png" width="50" height="50" /> Brain Royale (ID de juego: {gameId}){' '}
         <img src="logos/logo.png" width="50" height="50" />
       </h1>
-      <RollDice />
       <div className="grid">
         {cells.map((cell, index) => {
           const category = categories[cell.category_id - 1];
@@ -71,7 +76,7 @@ export default function Board() {
               className={`cell ${cellClassName}`}
               style={{ backgroundColor: category?.color }}
             >
-
+              
               <img
                 src={`logos/logo_${category?.name}.png`}
                 alt={category?.name}
@@ -82,6 +87,17 @@ export default function Board() {
             </div>
           );
         })}
+      </div>
+      <div className="player-sidebar">
+        <h2>JUGADORES</h2>
+        {players.map((player) => (
+          <div key={player.number} className="player-sidebar-item">
+            <h3>JUGADOR {player.number}</h3>
+            <p>
+              FICHA: {player.category.id} BRAINS: {player.brain}
+            </p>
+          </div>
+        ))}
       </div>
       <div className="meta">
         <img src="otro/copa.png" alt="Goal" width="100" height="100" />
