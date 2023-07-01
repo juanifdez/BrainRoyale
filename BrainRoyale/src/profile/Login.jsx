@@ -4,9 +4,11 @@ import axios from 'axios';
 import './Login.css';
 
 
+
+
 function Login() {
   const { token, setToken } = useContext(AuthContext);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState("");
@@ -15,8 +17,8 @@ function Login() {
     event.preventDefault();
 
     // Aquí se debe hacer la llamada al backend para iniciar sesión 
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
-        email: email,
+    axios.post(`${import.meta.env.REACT_APP_SERVER_URL}/login`, {
+        username: username,
         password: password
       }).then((response) => {
         console.log('Login successful');
@@ -42,12 +44,12 @@ function Login() {
       {error && <div className="error">No se pudo iniciar sesión. Intenta nuevamente.</div>}
       <form onSubmit={handleSubmit}>
         <label>
-          Email:
+          Username:
           <input 
-            type="email" 
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
+            type="username" 
+            name="username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </label>

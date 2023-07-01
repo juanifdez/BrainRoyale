@@ -12,7 +12,7 @@ function Signup() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axios.post(`${import.meta.env.VITE_BACKEND_URL}/signup`, {
+    axios.post(`${import.meta.env.REACT_APP_SERVER_URL}/signup`, {
         username: username,
         password: password
       }).then((response) => {
