@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css'; 
+import { SERVER_URL } from '../Comunications';
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -12,7 +13,7 @@ function Signup() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    axios.post(`${import.meta.env.REACT_APP_SERVER_URL}/signup`, {
+    axios.post(`${SERVER_URL}/signup`, {
         username: username,
         password: password
       }).then((response) => {
@@ -54,7 +55,10 @@ function Signup() {
         </label>
         <input type="submit" value="Crear Usuario" />
       </form>
+      <button> <a href='/'>Volver al Inicio</a></button>
     </div>
+
+    
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AuthContext } from '../auth/AuthContext';
 import axios from 'axios';
 import './Login.css';
+import { SERVER_URL } from '../Comunications';
 
 
 
@@ -17,7 +18,7 @@ function Login() {
     event.preventDefault();
 
     // Aquí se debe hacer la llamada al backend para iniciar sesión 
-    axios.post(`${import.meta.env.REACT_APP_SERVER_URL}/login`, {
+    axios.post(`${SERVER_URL}/login`, {
         username: username,
         password: password
       }).then((response) => {
@@ -65,6 +66,8 @@ function Login() {
         </label>
         <input type="submit" value="Enviar" />
       </form>
+
+    <button> <a href='/'>Volver al Inicio</a></button>
     </div>
   );
 }
