@@ -15,11 +15,11 @@ export default function RulesPage()
         <h1>Instrucciones</h1>
         <p>Cada jugador debe elegir una ficha de color. Es importante porque podrá saltarse una pregunta del color de su ficha una vez en la partida. </p>
 
-        <img src="fichas/ficha_ciencia.png" width="80" height="80"/>
-        <img src="fichas/ficha_deporte.png" width="80" height="80"/>
-        <img src="fichas/ficha_arte.png" width="80" height="80"/>
-        <img src="fichas/ficha_historia.png" width="80" height="80"/>
-        <img src="fichas/ficha_matematica.png" width="80" height="80"/>
+        <img src="fichas/ficha_1.png" width="80" height="80"/>
+        <img src="fichas/ficha_2.png" width="80" height="80"/>
+        <img src="fichas/ficha_3.png" width="80" height="80"/>
+        <img src="fichas/ficha_4.png" width="80" height="80"/>
+        <img src="fichas/ficha_5.png" width="80" height="80"/>
         <p>A continuación, comienza el juego y la persona que parte debe lanzar los dados para avanzar en el tablero.  </p>
         {/* El código para el siguiente componente se obtuvo de: https://www.geeksforgeeks.org/how-to-create-a-dice-rolling-app-using-reactjs/ */}
         <RollDice />

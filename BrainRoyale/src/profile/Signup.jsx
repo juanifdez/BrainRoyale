@@ -55,7 +55,9 @@ function Signup() {
         </label>
         <input type="submit" value="Crear Usuario" />
       </form>
-      <button> <a href='/'>Volver al Inicio</a></button>
+      <button className="returnButton">
+        <a href='/'>Volver al Inicio</a>
+      </button>
     </div>
 
     
