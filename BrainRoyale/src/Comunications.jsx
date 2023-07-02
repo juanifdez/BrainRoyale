@@ -153,9 +153,10 @@ export const getPlayer = async (gameId, playerNumber) => {
 export const updatePosition = async (playerId, newPosition) => {
   const url = `${SERVER_URL}/players/${playerId}`;
   const body = {
-    new_position: newPosition
+    position: newPosition
   };
   try {
+    console.log('New position:', newPosition);
     await axios.put(url, body);
   } catch (error) {
     console.error('Error updating position:', error);

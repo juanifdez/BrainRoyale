@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Board.css';
-import { getBoard, getCategories, getPlayer, getGame } from '../Comunications';
-
+import { getBoard, getCategories, getPlayer, getGame, updatePosition, updateGame } from '../Comunications';
 import RollDice from '../components/RollDice'
 
 export default function Board({ gameId }) {
@@ -9,9 +8,10 @@ export default function Board({ gameId }) {
   const [categories, setCategories] = useState([]);
   const [players, setPlayers] = useState([]);
   const [game, setGame] = useState(null);
+  const [diceResult, setDiceResult] = useState([0, 0]);
 
   useEffect(() => {
-    const fetchGame = async (gameId) => {
+    const fetchGameData = async (gameId) => {
       try {
         const gameData = await getGame(gameId);
         setGame(gameData);
@@ -21,7 +21,7 @@ export default function Board({ gameId }) {
     };
   
     if (gameId) {
-      fetchGame(gameId);
+      fetchGameData(gameId);
     }
   }, [gameId]);
 
@@ -51,7 +51,7 @@ export default function Board({ gameId }) {
   }, [gameId]);
   
   useEffect(() => {
-    const fetchPlayers = async () => {
+    const fetchPlayers = async (game) => {
       try {
         const playerData = [];
         for (let playerNumber = 1; playerNumber <= game?.players; playerNumber++) {
@@ -63,46 +63,118 @@ export default function Board({ gameId }) {
         console.error('Error getting players:', error);
       }
     };
-  
+
     if (game) {
-      fetchPlayers();
+      fetchPlayers(game);
     }
   }, [game]);
    
+  const numberMap = {
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6
+  };
+
+  const handleRollDice = (result1, result2) => {
+    setDiceResult([result1, result2]);
+  
+    const currentPlayer = players[game.turn - 1];
+    let newPosition = currentPlayer.board_id + numberMap[result1] + numberMap[result2];
+  
+    if (newPosition >= cells.length) {
+      newPosition = cells.length;
+      const winnerPlayer = players[game.turn - 1];
+      alert(`Juego finalizado: Ganador - Jugador ${winnerPlayer.number}`);
+    }
+    updatePosition(currentPlayer.id, newPosition)
+    .then(() => {
+      handleQuestion();
+    })
+    .catch((error) => {
+      console.error('Error updating position:', error);
+      throw error;
+    });
+};
+
+  const handleQuestion = () => {
+    console.log('Handling question...');
+    let answer = false;
+    handleNewTurn(answer);
+  };
+
+  const handleNewTurn = (answer) => {
+    if (answer === false) {
+      updateGame(gameId)
+    }
+  };
+
   return (
     <div className="board">
       <h1>
-        <img src="logos/logo.png" width="50" height="50" /> Brain Royale (ID de juego: {gameId}){' '}
+        <img src="logos/logo.png" width="50" height="50" /> Brain Royale {' '}
         <img src="logos/logo.png" width="50" height="50" />
       </h1>
-      <h2>TURNO: JUGADOR {}</h2> 
-      <RollDice />
+      {game && <h2>TURNO: JUGADOR {game.turn}</h2>}
+      <RollDice updateDiceResult={handleRollDice} />
       <div className="grid">
+      {cells.map((cell, index) => {
+      const category = categories[cell.category_id - 1];
+      const cellClassName = category ? category.name : '';
+
+      return (
+        <div
+          key={index}
+          className={`cell ${cellClassName}`}
+          style={{ backgroundColor: category?.color }}
+        >
+          <img
+            src={`logos/logo_${category?.name}.png`}
+            alt={category?.name}
+            className="category-logo"
+            width="80"
+            height="80"
+          />
+        </div>
+      );
+      })}
+      </div>
+
+      <div className="players">
         {cells.map((cell, index) => {
           const category = categories[cell.category_id - 1];
           const cellClassName = category ? category.name : '';
+
+          const playersInCell = players.filter((player) => player.board_id === cell.id);
 
           return (
             <div
               key={index}
               className={`cell ${cellClassName}`}
-              style={{ backgroundColor: category?.color }}
+              style={{
+                backgroundColor: category?.color,
+                borderColor: 'transparent',
+                display: 'flex',
+              }}
             >
-              
-              <img
-                src={`logos/logo_${category?.name}.png`}
-                alt={category?.name}
-                className="category-logo"
-                width="80"
-                height="80"
-              />
+              {playersInCell.map((player) => (
+                <img
+                  key={player.number}
+                  src={`fichas/ficha_${player.category_id}.png`}
+                  alt={`Ficha del Jugador ${player.number}`}
+                  className="player-token"
+                  width="80"
+                  height="80"
+                  style={{ marginRight: '5px' }}
+                />
+              ))}
             </div>
           );
         })}
-        <div className="meta">
-        <img src="otro/copa.png" alt="Goal" width="100" height="100" />
       </div>
-      </div>
+
 
       <div className="player-sidebar">
       {players.map((player) => (

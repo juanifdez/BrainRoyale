@@ -20,7 +20,7 @@ export default function Players({ onStartGame }) {
   };
 
   const handleIncrease = () => {
-    if (numberOfPlayers < 5) {
+    if (numberOfPlayers < 4) {
       setNumberOfPlayers(numberOfPlayers + 1);
       setError('');
     }
@@ -92,7 +92,7 @@ export default function Players({ onStartGame }) {
           <p>Selecciona el número de jugadores:</p>
           <div className="number-input">
             <button onClick={handleDecrease}>-</button>
-            <input type="number" min="2" max="5" value={numberOfPlayers} readOnly />
+            <input type="number" min="2" max="4" value={numberOfPlayers} readOnly />
             <button onClick={handleIncrease}>+</button>
           </div>
 
@@ -107,7 +107,7 @@ export default function Players({ onStartGame }) {
                   onChange={(e) => handleCategorySelection(e.target.value, index + 1)}
                 >
                   <option value="">Seleccione una categoría</option>
-                  {categoryNames.slice(0, -1).map((category) => (
+                  {categoryNames.slice(0, -2).map((category) => (
                     <option key={category.id} value={`${category.id}. ${category.name}`}>
                       {category.name}
                     </option>

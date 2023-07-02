@@ -11,6 +11,14 @@
   left: 80px;
   padding: 20px;
  } 
+
+ .players{
+  position: absolute;
+  top: 180PX;
+  left: 320px;
+  padding: 20px;
+ } 
+
   .board {
     display: flex;
     flex-direction: column;
