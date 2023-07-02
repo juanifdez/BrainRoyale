@@ -20,25 +20,6 @@ export default function LandingPage() {
         <img src="tableros/tablero.png" width="400" height="400"/>
         <br />
         <br />
-        <ul id='users'>
-            {token ? ( // if the token exists, show nothing
-            <>
-            <li>
-              <button>
-                <a href="/login">Iniciar sesión</a>
-              </button>
-            </li>
-            <li>
-              <button>
-                <a href="/signup">Crear cuenta</a>
-              </button>
-            </li>
-            
-            </>
-          ) : 
-          (        
-          <LogoutButton></LogoutButton>)}
-        </ul>
 
         <button> <a href='/game'>Jugar</a></button>
         <br />
