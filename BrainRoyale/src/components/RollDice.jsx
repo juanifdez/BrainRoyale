@@ -20,22 +20,23 @@ class RollDice extends Component{
     }
     this.roll = this.roll.bind(this)
   }
-  roll(){
-    const {sides} = this.props
-    this.setState({
-      
-      // Changing state upon click
-      die1 : sides[(Math.floor(Math.random() * sides.length))],
-      die2 : sides[(Math.floor(Math.random() * sides.length))],
-      rolling: true
-    })
-      
-    // Start timer of one sec when rolling start
-    setTimeout(() => {
-      
-      // Set rolling to false again when time over
-      this.setState({rolling:false})
-    },1000)
+  roll() {
+    const { sides, updateDiceResult } = this.props;
+    const result1 = sides[Math.floor(Math.random() * sides.length)];
+    const result2 = sides[Math.floor(Math.random() * sides.length)];
+    this.setState(
+      {
+        die1: result1,
+        die2: result2,
+        rolling: true
+      },
+      () => {
+        setTimeout(() => {
+          this.setState({ rolling: false });
+          updateDiceResult(result1, result2); 
+        }, 1000);
+      }
+    );
   }
   
   render(){
