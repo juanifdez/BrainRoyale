@@ -10,7 +10,7 @@ import './Navbar.css';
 
 
 export default function NavbarLanding() {
-    const { token } = localStorage.getItem('token');
+    const { token } = useContext(AuthContext);
 
     console.log(token);
     return(
