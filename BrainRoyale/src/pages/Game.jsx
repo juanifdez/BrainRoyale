@@ -18,6 +18,10 @@ export default function Game() {
       ) : (
         <Board gameId={gameId} />
       )}
+    
+    <button className="returnButton">
+        <a href='/'>Volver al Inicio</a>
+    </button>
     </div>
   );
 }

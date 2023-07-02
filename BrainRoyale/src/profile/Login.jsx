@@ -69,7 +69,9 @@ function Login() {
         <input type="submit" value="Iniciar Sesión" />
       </form>
 
-    <button> <a href='/'>Volver al Inicio</a></button>
+      <button className="returnButton">
+        <a href='/'>Volver al Inicio</a>
+      </button>
     </div>
   );
 }

@@ -28,7 +28,7 @@ nav ul li {
     margin-left: 20px;
 }
 nav ul li a {
-    font-family: 'Consolas', Courier, monospace;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     text-decoration: none; 
     color: #ffffff;
 }
@@ -41,7 +41,7 @@ button{
     background: #292f36;
     border: none;
     color: white;
-    font-family: 'Consolas', Courier, monospace;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
     padding: 10px 20px;
     text-decoration: none;
