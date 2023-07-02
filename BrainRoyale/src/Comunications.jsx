@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const SERVER_URL = 'http://localhost:3000'
+export const SERVER_URL = 'https://brainroyale-backend.onrender.com'
 console.log('SERVER_URL:', SERVER_URL);
 
 export const getCategories = async () => {
