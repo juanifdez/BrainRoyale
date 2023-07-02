@@ -10,7 +10,9 @@ import './Navbar.css';
 
 
 export default function NavbarLanding() {
-    const { token } = useContext(AuthContext);
+    const { token } = localStorage.getItem('token');
+
+    console.log(token);
     return(
     <div className="block-nav">
         <div className="nav">
@@ -23,7 +25,11 @@ export default function NavbarLanding() {
             </ul>
 
             <ul id='users'>
-            {token ? ( // if the token exists, show nothing
+            {token ? ( 
+              <LogoutButton/>
+
+          ) : 
+          (       
             <>
             <li>
               <button>
@@ -35,10 +41,7 @@ export default function NavbarLanding() {
                 <a href="/signup">Crear cuenta</a>
               </button>
             </li>
-            </>
-          ) : 
-          (        
-          <LogoutButton/>
+            </> 
           )}
             </ul>
             
