@@ -1,9 +1,13 @@
 import './LandingPage.css';
 //import Navbar from '../components/Navbar';
-import LogoutButton from '../profile/Logout';
+// import LogoutButton from '../profile/Logout';
 import NavbarLanding from '../components/NavbarLanding';
+import { useContext } from "react";
+import { AuthContext } from "../auth/AuthContext";
 
 export default function LandingPage() {
+
+  const { token } = useContext(AuthContext);
 
     return (
 
@@ -16,9 +20,28 @@ export default function LandingPage() {
         <img src="tableros/tablero.png" width="400" height="400"/>
         <br />
         <br />
+        <ul id='users'>
+            {token ? ( // if the token exists, show nothing
+            <>
+            <li>
+              <button>
+                <a href="/login">Iniciar sesión</a>
+              </button>
+            </li>
+            <li>
+              <button>
+                <a href="/signup">Crear cuenta</a>
+              </button>
+            </li>
+            
+            </>
+          ) : 
+          (        
+          <LogoutButton></LogoutButton>)}
+        </ul>
+
         <button> <a href='/game'>Jugar</a></button>
         <br />
-        <LogoutButton/>
         </div>
       );
 }

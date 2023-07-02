@@ -1,6 +1,16 @@
-import './Navbar.css'
+import { useContext } from "react";
+import { AuthContext } from "../auth/AuthContext";
+// import { AuthProvider } from "../auth/AuthProvider";
+import LogoutButton from '../profile/Logout';
+
+import { useState, useEffect } from "react";
+
+import './Navbar.css';
+
+
 
 export default function NavbarLanding() {
+    const { token } = useContext(AuthContext);
     return(
     <div className="block-nav">
         <div className="nav">
@@ -13,9 +23,25 @@ export default function NavbarLanding() {
             </ul>
 
             <ul id='users'>
-                <li><button><a href="/login">Iniciar sesión</a></button></li>
-                <li><button><a href="/signup">Crear cuenta</a></button></li>
+            {token ? ( // if the token exists, show nothing
+            <>
+            <li>
+              <button>
+                <a href="/login">Iniciar sesión</a>
+              </button>
+            </li>
+            <li>
+              <button>
+                <a href="/signup">Crear cuenta</a>
+              </button>
+            </li>
+            </>
+          ) : 
+          (        
+          <LogoutButton/>
+          )}
             </ul>
+            
         </nav>
         </div>
     </div>
