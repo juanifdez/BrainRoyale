@@ -1,13 +1,9 @@
 import './LandingPage.css';
-//import Navbar from '../components/Navbar';
-// import LogoutButton from '../profile/Logout';
 import NavbarLanding from '../components/NavbarLanding';
 import { useContext } from "react";
 import { AuthContext } from "../auth/AuthContext";
 
 export default function LandingPage() {
-
-  const { token } = useContext(AuthContext);
 
     return (
 
