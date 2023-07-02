@@ -45,25 +45,27 @@ export default function Players({ onStartGame }) {
 
   const handleStartGame = async () => {
     if (selectedCategories.length < numberOfPlayers) {
-      setError('Recuerda seleccionar una categoría distinta para cada jugador.');
+      setError('Selecciona una categoría para cada jugador.');
     } else {
       try {
         const gameId = await createGame(1, numberOfPlayers); // Cambiar por ID del usuario en sesión
-        setGameId(gameId);
         onStartGame(gameId);
-
+  
         for (let playerNumber = 1; playerNumber <= numberOfPlayers; playerNumber++) {
           const assignment = playerAssignments[playerNumber - 1];
           const categoryId = assignment.category.split('. ')[0];
           await createPlayer(gameId, playerNumber, categoryId);
         }
-        setGameStarted(true);
+        
+        setGameId(gameId);
+        setGameStarted(true); 
       } catch (error) {
         console.error('Error al crear partida:', error);
         setError('Error al crear partida. Por favor, inténtalo de nuevo.');
       }
     }
   };
+  
 
   useEffect(() => {
     const fetchCategories = async () => {

@@ -6,7 +6,7 @@ export default function Game() {
   const [gameStarted, setGameStarted] = useState(false);
   const [gameId, setGameId] = useState(null);
 
-  const handleStartGame = (id) => {
+  const handleStartGame = async (id) => {
     setGameStarted(true);
     setGameId(id);
   };
@@ -16,12 +16,13 @@ export default function Game() {
       {!gameStarted ? (
         <Players onStartGame={handleStartGame} />
       ) : (
-        <Board gameId={gameId} />
+        <>
+          <Board gameId={gameId} />
+          <button className="returnButton">
+            <a href="/">Salir del Juego</a>
+          </button>
+        </>
       )}
-    
-    <button className="returnButton">
-        <a href='/'>Volver al Inicio</a>
-    </button>
     </div>
   );
 }

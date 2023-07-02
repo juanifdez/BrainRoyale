@@ -5,6 +5,12 @@
     text-align: center;
   }
   
+ .grid{
+  position: absolute;
+  top: 180PX;
+  left: 80px;
+  padding: 20px;
+ } 
   .board {
     display: flex;
     flex-direction: column;
@@ -31,13 +37,4 @@
     right: 80px;
     padding: 20px;
   }  
-  
-  .meta {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-  }
   
